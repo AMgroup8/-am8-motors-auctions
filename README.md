@@ -1,32 +1,85 @@
-# -am8-motors-auctions
-Онлайн платформа автомобильных аукционов с реальными ставками и платежами.
-# A/M-8 Motors Auctions 🚗
+# A/M-8 Motors Auctions
 
-A premium real-time car auction platform with live bidding, secure payments, and admin dashboard.
+A production-ready, real-time international car auction platform connecting UAE (Sharjah) car suppliers with buyers in Tajikistan.
 
-## 🔥 Features
-- Real-time bidding system (Socket.io)
-- User authentication (JWT + OTP email verification)
-- Payment system ($3 entry fee via Stripe)
-- Live auction countdown timers
-- Admin panel for managing cars, users, and auctions
-- Responsive premium UI (dark theme)
+## Features
 
-## 🛠 Tech Stack
-- Next.js 14
-- React 18 + TypeScript
-- Tailwind CSS
-- Prisma + SQLite
-- Socket.io
-- Stripe API
-- Nodemailer
+- **Real-time Bidding**: Live auction rooms with WebSocket-based bidding
+- **Premium UI**: Dark theme with gold accents, Tesla-style design
+- **Secure Authentication**: JWT-based auth with email OTP verification
+- **Payment Integration**: Stripe-powered $3 entry fee system
+- **Access Codes**: Unique codes per auction for verified entry
+- **Admin Panel**: Full management dashboard for cars, auctions, and users
+- **Winner System**: Automatic winner selection with email notifications
+- **Responsive Design**: Works on all devices
 
-## 🚀 Purpose
-This platform connects UAE car suppliers with buyers in Central Asia for live online auctions.
+## Tech Stack
 
-## ⚙️ Setup
-npm install  
-npm run dev  
+- **Frontend**: Next.js 14, React 18, TypeScript, Tailwind CSS, Framer Motion
+- **Backend**: Next.js API Routes, Socket.io
+- **Database**: SQLite (Prisma ORM)
+- **Payments**: Stripe
+- **Email**: Nodemailer
+- **Auth**: JWT, bcryptjs
 
-## 🌍 Deployment
-Ready for Vercel deployment
+## Quick Start
+
+1. Install dependencies:
+```bash
+npm install
+```
+
+2. Set up environment variables in `.env.local`:
+```
+DATABASE_URL="file:./dev.db"
+JWT_SECRET="your-secret-key"
+STRIPE_SECRET_KEY="sk_test_..."
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY="pk_test_..."
+SMTP_HOST="smtp.gmail.com"
+SMTP_USER="your-email@gmail.com"
+SMTP_PASS="your-app-password"
+```
+
+3. Initialize database:
+```bash
+npx prisma generate
+npx prisma db push
+npm run db:seed
+```
+
+4. Run development server:
+```bash
+npm run dev
+```
+
+For production with Socket.io:
+```bash
+npm start
+```
+
+## Default Admin
+- Email: `admin@am8motors.com`
+- Password: `admin123`
+
+## Project Structure
+
+```
+app/
+  ├── api/           # API routes
+  ├── auction/       # Auction room
+  ├── admin/         # Admin panel
+  ├── dashboard/     # User dashboard
+  ├── login/         # Login page
+  ├── register/      # Registration
+  ├── verify/        # OTP verification
+  └── payment/       # Payment page
+components/          # React components
+lib/                 # Utilities, auth, email
+prisma/              # Database schema
+public/              # Static assets
+server.js            # Socket.io server
+```
+
+## License
+
+MIT
